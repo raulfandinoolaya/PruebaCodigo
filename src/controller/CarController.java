@@ -6,6 +6,7 @@ import model.Surface;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.EmptyStackException;
 import java.util.List;
 
 /**
@@ -69,7 +70,7 @@ public class CarController {
                 case 'O':moveToWest(command.getNumberSteps());
                     break;
                 default:
-                    System.err.println("La entrada es errada, verifique el formato y vuelva a intentarlo por favor.");
+                	showFormatErrorMessage();
             }
         }
 
@@ -83,11 +84,11 @@ public class CarController {
             try{
                 int steps = Integer.parseInt(command.split(",")[0].trim());
                 String direction = command.split(",")[1].trim();
-//                if(command.split(",")[2]!=null) throw new EmptyStackException() ;
+                if(command.split(",").length>2) throw new EmptyStackException() ;
                 Command commandToExec = new Command(direction, steps);
                 commandsListToExecute.add(commandToExec);
             }catch (Exception e){
-                System.err.println("La entrada es errada, verifique el formato y vuelva a intentarlo por favor.");
+            	showFormatErrorMessage();
             }
         }
         return commandsListToExecute;
@@ -99,5 +100,9 @@ public class CarController {
 
     private void showLimitsErrorMessage() {
         System.err.println("Se ha detenido el avance por exceder los límites.");
+    }
+    
+    private void showFormatErrorMessage() {
+        System.err.println("Error en formato de comando.");
     }
 }

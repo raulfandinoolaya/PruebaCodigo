@@ -44,7 +44,8 @@ public class VehicleParameterizedTest{
                 {"1.2"},
                 {".5"},
                 {"\\n"},
-                {"1000E2"}
+                {"1000E2"},
+                {"2,N,1,O"}
 
         });
     }
@@ -57,7 +58,7 @@ public class VehicleParameterizedTest{
         carController.moveAccordingToCommand(command);
         Assert.assertTrue(car.getXPosition() == 0);
         Assert.assertTrue(car.getYPosition()==0);
-        Assert.assertEquals("La entrada es errada, verifique el formato y vuelva a intentarlo por favor.\r\n", errContent.toString());
+        Assert.assertEquals("Error en formato de comando.\r\n", errContent.toString());
     }
 
     @Before

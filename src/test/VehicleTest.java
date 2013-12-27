@@ -118,17 +118,6 @@ public class VehicleTest {
                 "Movimiento realizado, nueva posición: (2,7)\r\n",outContent.toString());
     }
 
-//    @Test
-    public void testInvalidCommand(){
-        Car car = new Car(0,0);
-        CarController carController = new CarController(car, surface);
-        String command = "2,N,1,O";
-        carController.moveAccordingToCommand(command);
-        Assert.assertTrue(car.getXPosition()==0);
-        Assert.assertTrue(car.getYPosition()==0);
-        Assert.assertEquals("La entrada es errada, verifique el formato y vuelva a intentarlo por favor.\r\n",errContent.toString());
-    }
-
     @Test
     public void testDoNotMoveWithBadCommand(){
         Car car = new Car(0,0);
@@ -137,7 +126,7 @@ public class VehicleTest {
         carController.moveAccordingToCommand(command);
         Assert.assertTrue(car.getXPosition()==0);
         Assert.assertTrue(car.getYPosition()==0);
-        Assert.assertEquals("La entrada es errada, verifique el formato y vuelva a intentarlo por favor.\r\n", errContent.toString());
+        Assert.assertEquals("Error en formato de comando.\r\n", errContent.toString());
     }
 
     @Before
